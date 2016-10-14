@@ -5,6 +5,8 @@ namespace Models
 {
     public partial class DataContext : DbContext
     {
+        #region 上下文
+
         public DataContext()
             : base("ConnectionString")
         {
@@ -15,6 +17,7 @@ namespace Models
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();//移除复数表名的契约
+            modelBuilder.Entity<Sys_RoleOperating>().HasKey(t => new { t.RoleID, t.OperatingID });
             base.OnModelCreating(modelBuilder);
             /*
 
@@ -76,5 +79,17 @@ namespace Models
 
              */
         }
+
+        #endregion
+
+        #region SysModel
+
+        public DbSet<Sys_Log> Sys_Log { get; set; }
+        public DbSet<Sys_Operating> Sys_Operating { get; set; }
+        public DbSet<Sys_Role> Sys_Role { get; set; }
+        public DbSet<Sys_RoleOperating> Sys_RoleOperating { get; set; }
+        public DbSet<Sys_User> Sys_User { get; set; }
+
+        #endregion
     }
 }
