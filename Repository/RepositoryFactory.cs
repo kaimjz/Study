@@ -7,7 +7,7 @@ namespace Repositories
     /// 通用的Repository工厂
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class RepositoryFactory<T> where T : class ,new()
+    public partial class RepositoryFactory<T> where T : class ,new()
     {
         /// <summary>
         /// 定义通用的Repository
@@ -20,7 +20,10 @@ namespace Repositories
                 return new Repository<T>();
             }
         }
+    }
 
+    public partial class RepositoryFactory
+    {
         /// <summary>
         /// 定义通用的DBContext
         /// </summary>

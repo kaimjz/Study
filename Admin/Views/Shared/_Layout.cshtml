@@ -9,13 +9,21 @@
     <meta http-equiv="Cache-Control" content="no-siteapp" />
     <title>后台管理系统</title>
     @Styles.Render("~/bundles/css")
-    @*@RenderSection("header", false)*@
+    @Scripts.Render("~/bundles/js/header")
+    <!--[if lt IE 9]>
+    @Scripts.Render("~/bundles/ie9")
+    <![endif]-->
+    <!--[if IE 6]>
+    <script src="~/Content/Lib/DD_belatedPNG_0.0.8a-min.js"></script>
+    <script>DD_belatedPNG.fix('*');</script>
+    <![endif]-->
+    @RenderSection("header", false)
 </head>
 <body>
     <!--内容主体-->
     @RenderBody()
-    @Scripts.Render("~/bundles/js")
     @*底部包括js*@
-    @*@RenderSection("footer", false)*@
+    @RenderSection("footer", false)
+    @Scripts.Render("~/bundles/js/footer")
 </body>
 </html>

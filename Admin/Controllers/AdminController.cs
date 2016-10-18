@@ -30,13 +30,28 @@ namespace Admin.Controllers
 
         public ActionResult UserEdit()
         {
+            List<Sys_Role> roleList = RoleService.FindRoleList();
+            ViewBag.SelectRoleList = new SelectList(roleList, "ID", "Name");
             return View();
         }
         [HttpPost]
-        public ActionResult UserEdit(FormCollection collection)
+        public string UserEdit(FormCollection form)
         {
-            //Sys_User user = collection as Sys_User;
-            return View("UserIndex");
+            string loginname = form["loginName"] ?? "";
+            string userName = form["userName"] ?? "";
+            Guid roleID = new Guid(form["roleID"] ?? null);
+            int status = int.Parse(form["status"] ?? "1");
+            Sys_User model = new Sys_User()
+            {
+                ID = Guid.NewGuid(),
+                LoginName = loginname,
+                UserName = userName,
+                RoleID = roleID,
+                Status = status,
+                CreateDate = DateTime.Now,
+                LoginPwd = "111111"
+            };
+            return "1";
         }
     }
 }
